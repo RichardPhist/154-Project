@@ -10,23 +10,18 @@ def monty_hall(sim_nums, doors_input, swap_door):
     swap_wins= 0 
     swap_losses = 0
     no_swap_losses = 0
-    all_doorsList=[]
 
 #update later for more doors
-    for i in range(0,doors_input):
-        all_doorsList.append(i)
-
-    doorsNum = len(all_doorsList)
-
+ 
     for i in range(0, sim_nums):
-        car_door = random.randrange(0, doorsNum)
-        user_choice = random.randrange(0, doorsNum)
+        car_door = random.randrange(0, doors_input)
+        user_choice = random.randrange(0, doors_input)
         monty_choice = car_door
-        opened_doorsList = open_goat_door(user_choice, monty_choice, doorsNum)
+        opened_doorsList = open_goat_door(user_choice, monty_choice, doors_input)
 
 #swap the user's choice to a new door
         if swap_door == True:
-            new_user_choice = swap_user_choice(user_choice, opened_doorsList, doorsNum)
+            new_user_choice = swap_user_choice(user_choice, opened_doorsList, doors_input)
 
 #Possible game scenarios 
         if not swap_door and user_choice == car_door:
