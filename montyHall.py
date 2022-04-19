@@ -57,7 +57,7 @@ def open_goat_door(user_choice, monty_choice, doorsNum):
     #if the user happens to choose the winning door, one goat door must be left closed for them to swap to
     if (user_choice == monty_choice):
         open_goat_doorList.remove(user_choice)
-        open_goat_doorList.pop(random.randrange(len(open_goat_doorList))) 
+        open_goat_doorList.remove(random.randrange(len(open_goat_doorList))) 
     else:
         open_goat_doorList.remove(user_choice)
         open_goat_doorList.remove(monty_choice)
