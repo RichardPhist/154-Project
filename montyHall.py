@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 
+#testing purposes 
+
 plt.style.use('fivethirtyeight')
 
 #run games that tally wins/losses and if there was a user choice swap
