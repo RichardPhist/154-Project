@@ -7,7 +7,7 @@ import random
 plt.style.use('fivethirtyeight')
 
 #run games that tally wins/losses and if there was a user choice swap
-def monty_hall(sim_nums, doors_input, swap_door):
+def monty_hall(sim_nums, doors_input, swap_door, variation):
     no_swap_wins= 0
     swap_wins= 0 
     swap_losses = 0
@@ -19,7 +19,7 @@ def monty_hall(sim_nums, doors_input, swap_door):
         car_door = random.randrange(0, doors_input)
         user_choice = random.randrange(0, doors_input)
         monty_choice = car_door
-        opened_doorsList = open_goat_door(user_choice, monty_choice, doors_input)
+        opened_doorsList = open_goat_door(user_choice, monty_choice, doors_input, variation)
 
 #swap the user's choice to a new door
         if swap_door == True:
@@ -47,20 +47,22 @@ def monty_hall(sim_nums, doors_input, swap_door):
     return   no_swap_wins, swap_wins, swap_losses, no_swap_losses, sim_nums
 
 #open a goat door
-def open_goat_door(user_choice, monty_choice, doorsNum):
+def open_goat_door(user_choice, monty_choice, doorsNum, variation):
     open_goat_doorList=[]
     
     #add all doors to the list, remove the user's door and the winning door
     for i in range(0, doorsNum):
         open_goat_doorList.append(i)
 
-    #if the user happens to choose the winning door, one goat door must be left closed for them to swap to
-    if (user_choice == monty_choice):
-        open_goat_doorList.remove(user_choice)
-        open_goat_doorList.pop(random.randrange(len(open_goat_doorList))) 
-    else:
-        open_goat_doorList.remove(user_choice)
-        open_goat_doorList.remove(monty_choice)
+    # If there is no variation, then 
+    if(variation == False)
+        #if the user happens to choose the winning door, one goat door must be left closed for them to swap to
+        if (user_choice == monty_choice):
+            open_goat_doorList.remove(user_choice)
+            open_goat_doorList.pop(random.randrange(len(open_goat_doorList))) 
+        else:
+            open_goat_doorList.remove(user_choice)
+            open_goat_doorList.remove(monty_choice)
     
     return open_goat_doorList
    
