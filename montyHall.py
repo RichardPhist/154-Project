@@ -61,7 +61,12 @@ def open_door(user_choice, monty_choice, doorsNum, variation):
         #so leave a random door for the host to open
         if (user_choice == monty_choice):
             opened_door_lists.remove(user_choice) #remove the users choice from the hosts list
-            opened_door_lists.remove(random.randrange(len(opened_door_lists))) #remove a random goat door
+
+            remove_door = random.randrange(len(opened_door_lists))
+            if(remove_door == user_choice):
+                remove_door+=1
+
+            opened_door_lists.remove(remove_door) #remove a random goat door
 
         #The only goat door the host can open is the door the user did not choose 
         #and the one that does not have a car behind it 
