@@ -21,6 +21,12 @@ def monty_hall(sim_nums, doors_input, swap_door, variation):
         monty_choice = car_door
         opened_door_list = open_door(user_choice, monty_choice, doors_input, variation)
 
+        #If variant - check if opened_door_list includes the car
+        if(variation == True):
+            if(car_door in opened_door_list):
+                no_swap_wins+=1
+                
+
 #swap the user's choice to a new door
         if swap_door == True:
             new_user_choice = swap_user_choice(user_choice, opened_door_list, doors_input)
@@ -87,7 +93,6 @@ def open_door(user_choice, monty_choice, doorsNum, variation):
         opened_door_lists.remove(door1) #remove a random door
         opened_door_lists.remove(door2) #remove a random door
 
-
     return opened_door_lists
    
 
@@ -100,9 +105,9 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 
-tests = 100
+tests = 200000
 doors = 3
-variation = False #change to run with or without variation
+variation = True #change to run with or without variation
 
 sim_swap_results = monty_hall(tests, doors, True, variation) 
 sim_no_swap_results = monty_hall(tests, doors, False, variation)
