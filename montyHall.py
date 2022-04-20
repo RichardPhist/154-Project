@@ -72,8 +72,16 @@ def open_door(user_choice, monty_choice, doorsNum, variation):
     #else - the variation is  chosen: the host may open any door by accident
     #minus two leftover doors 
     else:
-        opened_door_lists.remove(random.randrange(len(opened_door_lists))) #remove a random door
-        #opened_door_lists.remove(random.randrange(len(opened_door_lists))) #remove a random door
+        door1 = random.randrange(len(opened_door_lists))
+
+        if(door1==0):
+            door2 = door1+1
+        else:
+            door2=door1-1
+
+        opened_door_lists.remove(door1) #remove a random door
+        opened_door_lists.remove(door2) #remove a random door
+
 
     return opened_door_lists
    
@@ -87,9 +95,9 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 
-tests = 3
+tests = 100
 doors = 3
-variation = True #change to run with or without variation
+variation = False #change to run with or without variation
 
 sim_swap_results = monty_hall(tests, doors, True, variation) 
 sim_no_swap_results = monty_hall(tests, doors, False, variation)
