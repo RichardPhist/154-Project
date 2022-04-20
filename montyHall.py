@@ -19,13 +19,7 @@ def monty_hall(sim_nums, doors_input, swap_door, variation):
         car_door = random.randrange(0, doors_input)
         user_choice = random.randrange(0, doors_input)
         monty_choice = car_door
-        opened_door_list = open_door(user_choice, monty_choice, doors_input, variation)
-
-        #If variant - check if opened_door_list includes the car
-        if(variation == True):
-            if(car_door in opened_door_list):
-                no_swap_wins+=1
-                
+        opened_door_list = open_door(user_choice, monty_choice, doors_input, variation)              
 
 #swap the user's choice to a new door
         if swap_door == True:
@@ -105,10 +99,10 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 
-tests = 1000
-doors = 100
-swap = True
-variation = False #change to run with or without variation
+tests = 10
+doors = 3
+swap = False
+variation = True #change to run with or without variation
 
 sim_swap_results = monty_hall(tests, doors, swap, variation) 
 sim_no_swap_results = monty_hall(tests, doors, swap, variation)
@@ -144,7 +138,7 @@ plt.plot(testsList, winList)
 plt.xlabel('Tests')
 plt.ylabel('Percentage of Wins')
 plt.title('Monty Hall Win Percentage (swap)')
-plt.show()
+#plt.show()
 
     
 
