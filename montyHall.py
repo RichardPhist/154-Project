@@ -99,10 +99,10 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 
-tests = 10
+tests = 1000
 doors = 3
 swap = False
-variation = True #change to run with or without variation
+variation = False #change to run with or without variation
 
 sim_swap_results = monty_hall(tests, doors, swap, variation) 
 sim_no_swap_results = monty_hall(tests, doors, swap, variation)
@@ -137,8 +137,8 @@ plt.figsize =((2,5))
 plt.plot(testsList, winList)
 plt.xlabel('Tests')
 plt.ylabel('Percentage of Wins')
-plt.title('Monty Hall Win Percentage (swap)')
-#plt.show()
+plt.title('Win Percentage (swap and novariant)')
+plt.show()
 
     
 
