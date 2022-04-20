@@ -105,12 +105,13 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 
-tests = 200000
-doors = 3
-variation = True #change to run with or without variation
+tests = 1000
+doors = 100
+swap = True
+variation = False #change to run with or without variation
 
-sim_swap_results = monty_hall(tests, doors, True, variation) 
-sim_no_swap_results = monty_hall(tests, doors, False, variation)
+sim_swap_results = monty_hall(tests, doors, swap, variation) 
+sim_no_swap_results = monty_hall(tests, doors, swap, variation)
 
 print("\n---------------------------- Monty Hall Simulation Results ----------------------------")
 print("Number of tests: ", tests)
@@ -130,7 +131,7 @@ for i in range(1, tests):
     #True/False as switch/no switch,
     #and True/False as variatoin/no variation
 
-    y = monty_hall(i, doors, True, variation) 
+    y = monty_hall(i, doors, swap, variation) 
     percent = (y[1]/y[4]*100)
     winList.append (percent)
     count += percent
