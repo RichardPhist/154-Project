@@ -7,19 +7,17 @@ import random
 plt.style.use('fivethirtyeight')
 
 #run games that tally wins/losses and if there was a user choice swap
-def monty_hall(sim_nums, doors_input, swap_door, variation):
+def monty_hall(sim_nums, doors_input, swap_door, variant):
     no_swap_wins= 0
     swap_wins= 0 
     swap_losses = 0
     no_swap_losses = 0
 
-#update later for more doors
- 
     for i in range(0, sim_nums):
         car_door = random.randrange(0, doors_input)
         user_choice = random.randrange(0, doors_input)
         monty_choice = car_door
-        opened_door_list = open_door(user_choice, monty_choice, doors_input, variation)              
+        opened_door_list = open_door(user_choice, monty_choice, doors_input, variant)              
 
 #swap the user's choice to a new door
         if swap_door == True:
@@ -47,15 +45,15 @@ def monty_hall(sim_nums, doors_input, swap_door, variation):
     return   no_swap_wins, swap_wins, swap_losses, no_swap_losses, sim_nums
 
 #open a goat door
-def open_door(user_choice, monty_choice, doorsNum, variation):
+def open_door(user_choice, monty_choice, doorsNum, variant):
     opened_door_lists=[]
     
     #add all doors to the list, remove the user's door and the winning door
     for i in range(0, doorsNum):
         opened_door_lists.append(i)
 
-    #If the variation is not chosen, the host may only open a goat door
-    if(variation == False):
+    #If the variant is not chosen, the host may only open a goat door
+    if(variant == False):
 
         #if the user chooses the winning door, the host can choose from either leftover door
         #so leave a random door for the host to open
@@ -74,7 +72,7 @@ def open_door(user_choice, monty_choice, doorsNum, variation):
             opened_door_lists.remove(user_choice) #remove the users choice from the hosts list
             opened_door_lists.remove(monty_choice) #remove the car door from the hosts list
     
-    #else - the variation is  chosen: the host may open any door by accident
+    #else - the variant is  chosen: the host may open any door by accident
     #minus two leftover doors 
     else:
         door1 = random.randrange(len(opened_door_lists))
@@ -102,10 +100,10 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 tests = 1000
 doors = 3
 swap = False
-variation = False #change to run with or without variation
+variant = False #change to run with or without variant
 
-sim_swap_results = monty_hall(tests, doors, swap, variation) 
-sim_no_swap_results = monty_hall(tests, doors, swap, variation)
+sim_swap_results = monty_hall(tests, doors, swap, variant) 
+sim_no_swap_results = monty_hall(tests, doors, swap, variant)
 
 print("\n---------------------------- Monty Hall Simulation Results ----------------------------")
 print("Number of tests: ", tests)
@@ -123,21 +121,21 @@ for i in range(1, tests):
     #run monty hall simulation  with i as the count of simulations,
     #doors as the count of doors, 
     #True/False as switch/no switch,
-    #and True/False as variatoin/no variation
+    #and True/False as variatoin/no variant
 
-    y = monty_hall(i, doors, swap, variation) 
-    percent = (y[1]/y[4]*100)
+    y = monty_hall(i, doors, swap, variant) 
+    percent = (y[0]/y[4]*100)
     winList.append (percent)
     count += percent
 
 # Average win% over 1000 tests
 print("average win percentage: ", count/tests)
 
-plt.figsize =((2,5))
+plt.figsize =((1,3))
 plt.plot(testsList, winList)
 plt.xlabel('Tests')
 plt.ylabel('Percentage of Wins')
-plt.title('Win Percentage (swap and novariant)')
+plt.title('Win Percentage (no swap/no variant)')
 plt.show()
 
     
