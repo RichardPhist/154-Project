@@ -26,19 +26,19 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
 #Possible game scenarios 
         if not swap_door and user_choice == car_door:
             no_swap_wins +=1
-            #print("User chose door#", user_choice, "\tmonty opened goat doors#", opened_door_list, "\tcar door#", car_door, "\tWINNER!")
+            #User does not switch and wins
         
         elif not swap_door and user_choice != car_door:
             no_swap_losses +=1
-            #print("User chose door#", user_choice, "\tmonty opened goat doors#", opened_door_list,"\tcar door#", car_door )
+            #User does not switch and loses
 
         elif swap_door and new_user_choice == car_door:
             swap_wins +=1
-            #print("User chose door#",user_choice, "\tmonty opened goat doors#", opened_door_list, "swapped to doors#", new_user_choice, "\tcar door#", car_door, "\tWINNER!")
+            #User switches and wins
 
         elif swap_door and new_user_choice != car_door:
             swap_losses +=1
-            #print("User chose door#", user_choice,"\tmonty opened goat doors#", opened_door_list,  "swapped to doors#", new_user_choice,"\tcar door#", car_door )
+            #User switches and loses
                     
         else: print("error")
 
