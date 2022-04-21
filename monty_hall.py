@@ -13,7 +13,6 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
     swap_losses = 0
     no_swap_losses = 0
     variant_host_won = 0
-    variant_loss = False
 
     for i in range(0, sim_nums):
         car_door = random.randrange(0, doors_input)
@@ -53,6 +52,7 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
 #open a goat door
 def open_door(user_choice, monty_choice, doorsNum, variant):
     opened_door_lists=[]
+    variant_loss = False
     
     #add all doors to the list, remove the user's door and the winning door
     for i in range(0, doorsNum):
