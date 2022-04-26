@@ -109,9 +109,9 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 tests = 1000
-doors = 3
-swap = False
-variant = False #change to run with or without variant
+doors = 30
+swap = True
+variant = True #change to run with or without variant
 
 sim_swap_results = monty_hall(tests, doors, swap, variant) 
 sim_no_swap_results = monty_hall(tests, doors, swap, variant)
