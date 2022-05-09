@@ -84,17 +84,17 @@ def open_door(user_choice, monty_choice, doorsNum, variant):
         # ensure 2 different doors are removed 
         door1 = random.randrange(len(opened_door_lists))
 
-        if(door1 == 0):
-            door2 = door1 + 1
-        else:
-            door2 = door1 - 1
+        # if(door1 == 0):
+        #     door2 = door1 + 1
+        # else:
+        #     door2 = door1 - 1
 
         opened_door_lists.remove(door1) 
-        opened_door_lists.remove(door2) 
+        opened_door_lists.remove(user_choice) 
 
         # if car door was not removed from the list then
         # the host opened the car door, thus the player lost
-        if(door1 != monty_choice and door2 != monty_choice):
+        if(door1 != monty_choice and user_choice != monty_choice):
             variant_loss = True
 
     return opened_door_lists, variant_loss
