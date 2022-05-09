@@ -82,15 +82,17 @@ def open_door(user_choice, monty_choice, doorsNum, variant):
     # VARIANT: host may open any door by accident
     else:
         # ensure 2 different doors are removed 
+        
+        opened_door_lists.remove(user_choice) 
+
         door1 = random.randrange(len(opened_door_lists))
 
-        # if(door1 == 0):
-        #     door2 = door1 + 1
+        if(door1 == user_choice):
+            door1 = door1 + 1
         # else:
         #     door2 = door1 - 1
 
         opened_door_lists.remove(door1) 
-        opened_door_lists.remove(user_choice) 
 
         # if car door was not removed from the list then
         # the host opened the car door, thus the player lost
@@ -111,7 +113,7 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 tests = 1000
 doors = 3
-swap = False
+swap = True
 variant = True #change to run with or without variant
 
 sim_swap_results = monty_hall(tests, doors, swap, variant) 
