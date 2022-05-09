@@ -12,7 +12,6 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
     swap_wins= 0 
     swap_losses = 0
     no_swap_losses = 0
-    variant_host_won = 0
 
     for i in range(0, sim_nums):
         car_door = random.randrange(0, doors_input)
@@ -26,7 +25,9 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
 
 #Possible game scenarios 
         if variant_loss == True:
-            variant_host_won +=1
+            if(swap_door == True):
+                swap_losses+=1
+            else: no_swap_losses +=1            
             #VARIANT: the player lost because the host opened the car door
 
         elif not swap_door and user_choice == car_door:
@@ -47,7 +48,7 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
                     
         else: print("error")
 
-    return   no_swap_wins, swap_wins, swap_losses, no_swap_losses, sim_nums, variant_host_won
+    return   no_swap_wins, swap_wins, swap_losses, no_swap_losses, sim_nums
 
 #open a goat door
 def open_door(user_choice, monty_choice, doorsNum, variant):
@@ -109,8 +110,8 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 tests = 1000
-doors = 30
-swap = True
+doors = 3
+swap = False
 variant = True #change to run with or without variant
 
 sim_swap_results = monty_hall(tests, doors, swap, variant) 
@@ -135,7 +136,7 @@ for i in range(1, tests):
     #and True/False as variatoin/no variant
 
     y = monty_hall(i, doors, swap, variant) 
-    percent = (y[0]/y[4]*100)
+    percent = (y[3]/y[4]*100)
     winList.append (percent)
     count += percent
 
