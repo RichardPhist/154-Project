@@ -79,18 +79,17 @@ def open_door(user_choice, monty_choice, doorsNum, variant):
             opened_door_lists.remove(user_choice) #remove the users choice from the hosts list
             opened_door_lists.remove(monty_choice) #remove the car door from the hosts list
     
-    # VARIANT: host may open any door by accident
+    # VARIANT: host may open car door by accident
     else:
-        # ensure 2 different doors are removed 
-        
+        # ensure host does not open car door        
         opened_door_lists.remove(user_choice) 
 
+        # pick another random door the host will leave closed
         door1 = random.randrange(len(opened_door_lists))
 
+        # ensure the 2 doors left closed are not the same
         if(door1 == user_choice):
             door1 = door1 + 1
-        # else:
-        #     door2 = door1 - 1
 
         opened_door_lists.remove(door1) 
 
