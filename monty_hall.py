@@ -1,3 +1,8 @@
+# 154 Project - Monty Hall Game
+
+# Julieta Mendez
+# Malee Seechan
+
 import matplotlib.pyplot as plt
 import numpy as np
 import random
