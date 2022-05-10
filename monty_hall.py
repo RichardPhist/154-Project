@@ -112,8 +112,8 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 tests = 1000
-doors = 3
-swap = True
+doors = 1000
+swap = False
 variant = True #change to run with or without variant
 
 sim_swap_results = monty_hall(tests, doors, swap, variant) 
@@ -138,7 +138,7 @@ for i in range(1, tests):
     #and True/False as variatoin/no variant
 
     y = monty_hall(i, doors, swap, variant) 
-    percent = (y[3]/y[4]*100)
+    percent = (y[0]/y[4]*100)
     winList.append (percent)
     count += percent
 
