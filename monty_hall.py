@@ -95,22 +95,21 @@ def open_door(other_door, user_choice, monty_choice, doorsNum, variant):
         # pick another random door the host will leave closed
        
         other_door = random.randint(0,len(opened_door_lists)-1)
-        print('other: ', other_door, ' user: ', user_choice, 'car: ',monty_choice)
+     #   print('other: ', other_door, ' user: ', user_choice, 'car: ',monty_choice)
 
         # ensure the 2 doors left closed are not the same
         if(other_door == user_choice and user_choice == len(opened_door_lists)-1):
-            print('user: ' )
             other_door = other_door - 1
-        else:
+        elif(other_door == user_choice):
             other_door = other_door + 1
 
         opened_door_lists.remove(user_choice) 
-        print(opened_door_lists)
+      #  print(opened_door_lists)
 
 
         opened_door_lists.remove(other_door) 
-        print(opened_door_lists)
-        print()
+      #  print(opened_door_lists)
+       # print()
 
         # if car door was not removed from the list then
         # the host opened the car door, thus the player lost
@@ -129,9 +128,9 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 
-tests = 3
-doors = 10
-swap = False
+tests = 1000
+doors = 100
+swap = True
 variant = True #change to run with or without variant
 
 sim_swap_results = monty_hall(tests, doors, swap, variant) 
@@ -156,7 +155,7 @@ for i in range(1, tests):
     #and True/False as variatoin/no variant
 
     y = monty_hall(i, doors, swap, variant) 
-    percent = (y[0]/y[4]*100)
+    percent = (y[1]/y[4]*100)
     winList.append (percent)
     count += percent
 
