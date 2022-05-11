@@ -17,16 +17,17 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
     swap_wins= 0 
     swap_losses = 0
     no_swap_losses = 0
+    other_door = 0
 
     for i in range(0, sim_nums):
         car_door = random.randrange(0, doors_input)
         user_choice = random.randrange(0, doors_input)
         monty_choice = car_door
-        opened_door_list, variant_loss = open_door(user_choice, monty_choice, doors_input, variant)              
+        opened_door_list, variant_loss, other_door = open_door(other_door, user_choice, monty_choice, doors_input, variant)              
 
 #swap the user's choice to a new door
         if swap_door == True:
-            new_user_choice = swap_user_choice(user_choice, opened_door_list, doors_input)
+            new_user_choice = other_door
 
 #Possible game scenarios 
         if variant_loss == True:
@@ -56,7 +57,7 @@ def monty_hall(sim_nums, doors_input, swap_door, variant):
     return   no_swap_wins, swap_wins, swap_losses, no_swap_losses, sim_nums
 
 #open a goat door
-def open_door(user_choice, monty_choice, doorsNum, variant):
+def open_door(other_door, user_choice, monty_choice, doorsNum, variant):
     opened_door_lists=[]
     variant_loss = False
     
@@ -72,11 +73,13 @@ def open_door(user_choice, monty_choice, doorsNum, variant):
         if (user_choice == monty_choice):
             opened_door_lists.remove(user_choice) #remove the users choice from the hosts list
 
-            remove_door = random.randrange(len(opened_door_lists))
-            if(remove_door == user_choice):
-                remove_door+=1
+            other_door = random.randrange(len(opened_door_lists))
+            if(other_door == user_choice and user_choice == len(opened_door_lists)-1):
+                other_door -= 1
+            else:
+                other_door =+ 1
 
-            opened_door_lists.remove(remove_door) #remove a random goat door
+            opened_door_lists.remove(other_door) #remove a random goat door
 
         #The only goat door the host can open is the door the user did not choose 
         #and the one that does not have a car behind it 
@@ -87,23 +90,34 @@ def open_door(user_choice, monty_choice, doorsNum, variant):
     # VARIANT: host may open car door by accident
     else:
         # ensure host does not open car door        
-        opened_door_lists.remove(user_choice) 
+       
 
         # pick another random door the host will leave closed
-        door1 = random.randrange(len(opened_door_lists))
+       
+        other_door = random.randint(0,len(opened_door_lists)-1)
+        print('other: ', other_door, ' user: ', user_choice, 'car: ',monty_choice)
 
         # ensure the 2 doors left closed are not the same
-        if(door1 == user_choice):
-            door1 = door1 + 1
+        if(other_door == user_choice and user_choice == len(opened_door_lists)-1):
+            print('user: ' )
+            other_door = other_door - 1
+        else:
+            other_door = other_door + 1
 
-        opened_door_lists.remove(door1) 
+        opened_door_lists.remove(user_choice) 
+        print(opened_door_lists)
+
+
+        opened_door_lists.remove(other_door) 
+        print(opened_door_lists)
+        print()
 
         # if car door was not removed from the list then
         # the host opened the car door, thus the player lost
-        if(door1 != monty_choice and user_choice != monty_choice):
+        if(other_door != monty_choice and user_choice != monty_choice):
             variant_loss = True
 
-    return opened_door_lists, variant_loss
+    return opened_door_lists, variant_loss, other_door
    
 
 #allows user to swap their choice after the host opens goat_doors. New door can't be one that is already open nor the user's current choice
@@ -115,8 +129,8 @@ def swap_user_choice(user_choice, opened_door_list, doorsNum):
 
 
 
-tests = 1000
-doors = 1000
+tests = 3
+doors = 10
 swap = False
 variant = True #change to run with or without variant
 
